@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
-using Discord.Modules;
+
 
 
 namespace TestBot_Csharp
