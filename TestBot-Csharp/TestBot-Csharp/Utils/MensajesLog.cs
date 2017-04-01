@@ -97,5 +97,53 @@ namespace TestBot_Csharp.Utils
                 });
             return true;
         }
+
+        public static async Task<Boolean> LogJoinChannelUsr(string canal, string usuario, Soporte soporte)
+        {
+            await Task.Run(() =>
+            {
+                switch (soporte)
+                {
+                    case Soporte.consola:
+                        Console.Write("El usuario " + usuario + " ha entrado en el canal '" + canal + "'\n");
+                        break;
+                    case Soporte.baseDeDatos:
+                        break;
+                }
+            });
+            return true;
+        }
+
+        public static async Task<Boolean> LogLeftChannelUsr(string canal, string usuario, Soporte soporte)
+        {
+            await Task.Run(() =>
+            {
+                switch (soporte)
+                {
+                    case Soporte.consola:
+                        Console.Write("El usuario " + usuario + " ha dejado el canal '" + canal + "'\n");
+                        break;
+                    case Soporte.baseDeDatos:
+                        break;
+                }
+            });
+            return true;
+        }
+
+        public static async Task<Boolean> LogChangeChannelUsr(string canalAntes, string canalDespues, string usuario, Soporte soporte)
+        {
+            await Task.Run(() =>
+            {
+                switch (soporte)
+                {
+                    case Soporte.consola:
+                        Console.Write("El usuario " + usuario + " ha cambiado de canal '" + canalAntes + "->" + canalDespues + "'\n");
+                        break;
+                    case Soporte.baseDeDatos:
+                        break;
+                }
+            });
+            return true;
+        }
     }
 }

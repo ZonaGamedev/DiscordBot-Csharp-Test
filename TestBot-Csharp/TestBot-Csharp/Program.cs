@@ -33,6 +33,25 @@ namespace TestBot_Csharp
                     {
                         await Utils.MensajesLog.LogStatusUsr(e.Before.Status + "->" +  e.After.Status, e.Before.Name, MensajesLog.Soporte.consola);
                     }
+
+                    // Entrada/Salida de canal de audio
+                    if (e.Before.VoiceChannel != e.After.VoiceChannel)
+                    {
+                        if (e.Before.VoiceChannel == null)
+                        {
+                            await Utils.MensajesLog.LogJoinChannelUsr(e.After.VoiceChannel.Name, e.Before.Name, MensajesLog.Soporte.consola);
+                        }
+                        else if (e.After.VoiceChannel == null)
+                        {
+                            await Utils.MensajesLog.LogLeftChannelUsr(e.Before.VoiceChannel.Name, e.Before.Name, MensajesLog.Soporte.consola);
+                        }
+                        else
+                        {
+                            await Utils.MensajesLog.LogChangeChannelUsr(e.Before.VoiceChannel.Name, e.After.VoiceChannel.Name, e.Before.Name, MensajesLog.Soporte.consola);
+                        }
+
+                        
+                    }
                 };
 
             //_client.MessageReceived += async (s, e) =>
