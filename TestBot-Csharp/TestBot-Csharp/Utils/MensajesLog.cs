@@ -81,5 +81,21 @@ namespace TestBot_Csharp.Utils
 
             return true;
         }
+
+        public static async Task<Boolean> LogStatusUsr(string estado, string usuario, Soporte soporte)
+        {
+            await Task.Run(() =>
+                {
+                    switch (soporte)
+                    {
+                        case Soporte.consola:
+                            Console.Write("El usuario " + usuario + " tiene como estado '" + estado + "'\n");
+                            break;
+                        case Soporte.baseDeDatos:
+                            break;
+                    }
+                });
+            return true;
+        }
     }
 }

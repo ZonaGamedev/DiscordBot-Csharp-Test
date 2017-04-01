@@ -25,17 +25,15 @@ namespace TestBot_Csharp
                 await Utils.MensajesLog.LogSalidaServidor(e.User.Name, Utils.MensajesLog.Soporte.consola);
             };
 
-            //TODO: Pendiente de encontrar los eventos de login y logout en el servidor
-            _client.JoinedServer += async (s, e) =>
-            {
-                await Utils.MensajesLog.LogUsrConectado(e.Server.CurrentUser.Name, Utils.MensajesLog.Soporte.consola);
-            };
-            _client.LeftServer += async (s, e) =>
-            {
-                await Utils.MensajesLog.LogUsrDesconectado(e.Server.CurrentUser.Name, Utils.MensajesLog.Soporte.consola);
-            };
-            //----------------------------
-
+            // Eventos básicos de login y logout en el servidor
+            _client.UserUpdated += async (s, e) =>
+                {
+                    // Cambio de estado
+                    if (e.Before.Status != e.After.Status)
+                    {
+                        await Utils.MensajesLog.LogStatusUsr(e.Before.Status + "->" +  e.After.Status, e.Before.Name, MensajesLog.Soporte.consola);
+                    }
+                };
 
             //_client.MessageReceived += async (s, e) =>
             //{
